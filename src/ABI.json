@@ -1,0 +1,275 @@
+[
+  {
+    "inputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "dateCreate",
+        "type": "string"
+      },
+      {
+        "name": "description",
+        "type": "string"
+      },
+      {
+        "name": "previousBarcode",
+        "type": "string"
+      },
+      {
+        "name": "publicBarcode",
+        "type": "string"
+      }
+    ],
+    "name": "storeTraceData",
+    "outputs": [
+      {
+        "name": "success",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "publicBarcode",
+        "type": "string"
+      },
+      {
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "transfer",
+    "outputs": [
+      {
+        "name": "success",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "addr",
+        "type": "address"
+      },
+      {
+        "name": "partnerid",
+        "type": "string"
+      },
+      {
+        "name": "GLN",
+        "type": "string"
+      },
+      {
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "name": "partnerAddress",
+        "type": "string"
+      },
+      {
+        "name": "proof",
+        "type": "string"
+      },
+      {
+        "name": "typeOfPartner",
+        "type": "string"
+      }
+    ],
+    "name": "addPartner",
+    "outputs": [
+      {
+        "name": "success",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "addr",
+        "type": "address"
+      }
+    ],
+    "name": "getPartner",
+    "outputs": [
+      {
+        "name": "GLN",
+        "type": "string"
+      },
+      {
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "name": "partnerAddress",
+        "type": "string"
+      },
+      {
+        "name": "proof",
+        "type": "string"
+      },
+      {
+        "name": "typeOfPartner",
+        "type": "string"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [],
+    "name": "getContractOwner",
+    "outputs": [
+      {
+        "name": "owner",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "isOwner",
+    "outputs": [
+      {
+        "name": "result",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "publicBarcode",
+        "type": "string"
+      }
+    ],
+    "name": "getTraceData",
+    "outputs": [
+      {
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "name": "dateCreate",
+        "type": "string"
+      },
+      {
+        "name": "description",
+        "type": "string"
+      },
+      {
+        "name": "previousBarcode",
+        "type": "string"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "publicBarcode",
+        "type": "string"
+      }
+    ],
+    "name": "getdateCreate",
+    "outputs": [
+      {
+        "name": "dateCreate",
+        "type": "string"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "publicBarcode",
+        "type": "string"
+      }
+    ],
+    "name": "getPreviousBarcode",
+    "outputs": [
+      {
+        "name": "previousBarcode",
+        "type": "string"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "publicBarcode",
+        "type": "string"
+      }
+    ],
+    "name": "getOwner",
+    "outputs": [
+      {
+        "name": "owner",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "publicBarcode",
+        "type": "string"
+      }
+    ],
+    "name": "getdDescription",
+    "outputs": [
+      {
+        "name": "description",
+        "type": "string"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  }
+]

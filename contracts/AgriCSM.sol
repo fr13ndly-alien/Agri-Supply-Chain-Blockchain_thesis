@@ -37,22 +37,22 @@ contract AgriSCM {
     // address of smart contract owner
     address _owner;
     
-    event storeTraceDataCompleted(
-        address from,
-        string publicBarcode,
-        string previousBarcode
-    );
+    // event storeTraceDataCompleted(
+    //     address from,
+    //     string publicBarcode,
+    //     string previousBarcode
+    // );
 
-    event TransferCompleted(
-        address from,
-        address to,
-        string publicBarcode
-    );
+    // event TransferCompleted(
+    //     address from,
+    //     address to,
+    //     string publicBarcode
+    // );
     
-    event addPartnerCompleted(
-        string name,
-        string proof
-    );
+    // event addPartnerCompleted(
+    //     string name,
+    //     string proof
+    // );
     
     constructor() public {
         _owner = msg.sender;
@@ -73,11 +73,11 @@ contract AgriSCM {
 
         traceDatas[publicBarcode] = TraceData(msg.sender, dateCreate, 
                                         description, previousBarcode, publicBarcode);
-        emit storeTraceDataCompleted(msg.sender, publicBarcode, previousBarcode);
+        //emit storeTraceDataCompleted(msg.sender, publicBarcode, previousBarcode);
         return true;
     }
 
-    function transfer(string memory publicBarcode, address newOwner) public returns(bool success) {
+    function transfer(string memory publicBarcode, address newOwner) public view returns(bool success) {
     
         if (hasAdded(publicBarcode)) {
             TraceData memory td = getTraceDataInternal(publicBarcode);
@@ -87,7 +87,7 @@ contract AgriSCM {
                 //why do we need the isTransfered mapping?
                 // in this case, there might be multiple owners. Is this what we want?
                 isTransfered[publicBarcode][newOwner] = true;
-                emit TransferCompleted(msg.sender, newOwner, publicBarcode);
+                //emit TransferCompleted(msg.sender, newOwner, publicBarcode);
             }
 
             // TODO: ask Beat- why do we want to return true if the tx sender is not the owner? 
@@ -108,11 +108,11 @@ contract AgriSCM {
     
         require(isOwner());
         partners[addr] = Partner(msg.sender, partnerid, GLN, name, partnerAddress, proof, typeOfPartner);
-        emit addPartnerCompleted(name, proof);
+        //emit addPartnerCompleted(name, proof);
         return true;
     }
         
-    function getPartner(address addr) public returns (string memory GLN,
+    function getPartner(address addr) public view returns (string memory GLN,
         string memory name,
         string memory partnerAddress,
         string memory proof,
@@ -125,16 +125,16 @@ contract AgriSCM {
             typeOfPartner = partner.typeOfPartner;
         }
     
-    function getContractOwner() public returns (address owner){
+    function getContractOwner() public view returns (address owner){
         return _owner;
     }
     
-    function isOwner() public returns (bool result){
+    function isOwner() public view returns (bool result){
         return msg.sender == _owner;
     }
 
     // returns true if proof is stored
-    function hasAdded(string memory publicBarcode) internal returns(bool exists) {
+    function hasAdded(string memory publicBarcode) internal view returns(bool exists) {
         return traceDatas[publicBarcode].owner != address(0);
     }
 
@@ -149,7 +149,7 @@ contract AgriSCM {
     revert();
   }
     
-    function getTraceData(string memory publicBarcode) public returns(address owner, 
+    function getTraceData(string memory publicBarcode) public view returns(address owner, 
                                         string memory dateCreate, 
                                         string memory description,
                                         string memory previousBarcode) {
@@ -170,26 +170,26 @@ contract AgriSCM {
   }
 
   // returns the dateCreate of traceData
-  function getdateCreate(string memory publicBarcode) public returns(string memory dateCreate) {
+  function getdateCreate(string memory publicBarcode) public view returns(string memory dateCreate) {
     if (hasAdded(publicBarcode)) {
       return getTraceDataInternal(publicBarcode).dateCreate;
     }
   }
 
   // returns the previous barcode
-  function getPreviousBarcode(string memory publicBarcode)public returns(string memory previousBarcode) {
+  function getPreviousBarcode(string memory publicBarcode)public view returns(string memory previousBarcode) {
     if (hasAdded(publicBarcode)) {
       return getTraceDataInternal(publicBarcode).previousBarcode;
     }
   }
     // return the powner
-  function getOwner(string memory publicBarcode) public returns(address owner) {
+  function getOwner(string memory publicBarcode) public view returns(address owner) {
     if (hasAdded(publicBarcode)) {
       return getTraceDataInternal(publicBarcode).owner;
     }
   }
 
-  function getdDescription(string memory publicBarcode) public returns(string memory description) {
+  function getdDescription(string memory publicBarcode) public view returns(string memory description) {
     if (hasAdded(publicBarcode)) {
       return getTraceDataInternal(publicBarcode).description;
     }
