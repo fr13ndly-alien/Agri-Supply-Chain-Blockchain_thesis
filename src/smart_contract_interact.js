@@ -7,18 +7,21 @@ const fs = require('fs')
 let rawdata = fs.readFileSync('ABI.json')
 const abi = JSON.parse(rawdata)
 
-var accounts = web3.eth.getAccounts()
-  .catch(err =>{
-    console.log('- Catched error:',err)
-  })
-  .then((result) => {
-    return result
-  })
-  console.log("- Accounts", accounts)
+// GET ACCOUNTS 
+var accounts = new Array()
+web3.eth.getAccounts().then(value =>{
+  for(let i=0; i<10; i++)
+    accounts[i] = value[i]
+}).catch(err => {
+  console.log('- Getted Error:', err)
+})
+console.log('- List Accounts', accounts) 
+
+
 // address wich compile smart contract (ganache: usualy accounts[0])
-const contractOwnerAddress = "0xfcc7e399f7394d851846d7bbea43e1f977fef7db"
+const contractOwnerAddress = accounts[0]
 // address with you want to use to call and send method RPC
-const fromAccount = "0xe3843a15820da0c274c2e234b4f886b9c40658e4"
+const fromAccount = accounts[1]
 // put your deployed Smart contract address
 const contractAddress = "0x791d3220AF0ef4C9f47A2EBe3d652a4fCDb1eB99"
 const contract  = new web3.eth.Contract(abi, contractAddress, {
@@ -42,6 +45,10 @@ async function addPartner(address, partnerid, GLN, name, partnerAddress, proof, 
       console.log('- Catched Errror:\n')
   })
   console.log('- Called!')  
+}
+
+async function getPartner(addr) {
+  await contract.method
 }
 
 
